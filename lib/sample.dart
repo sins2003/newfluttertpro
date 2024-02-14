@@ -1,10 +1,12 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: sample(),
+  runApp(DevicePreview(
+    isToolbarVisible: true,
+    builder: (BuildContext context) =>
+        MaterialApp(useInheritedMediaQuery: true,debugShowCheckedModeBanner: false, home: sample()),
   ));
 }
 
@@ -23,6 +25,13 @@ class sample extends StatelessWidget {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/bg1.jpg"), fit: BoxFit.fill)),
+        // decoration: BoxDecoration(gradient: LinearGradient(colors: [
+        // Colors.blue,
+        // Colors.yellow,
+        // Colors.blue,
+        // ]
+        // ,begin: Alignment.bottomCenter
+        // ,end: Alignment.topCenter)),
         width: double.infinity,
         height: double.infinity,
         child: Column(
