@@ -5,8 +5,10 @@ import 'package:flutter/cupertino.dart';
 void main() {
   runApp(DevicePreview(
     isToolbarVisible: true,
-    builder: (BuildContext context) =>
-        MaterialApp(useInheritedMediaQuery: true,debugShowCheckedModeBanner: false, home: sample()),
+    builder: (BuildContext context) => MaterialApp(
+        useInheritedMediaQuery: true,
+        debugShowCheckedModeBanner: false,
+        home: sample()),
   ));
 }
 
