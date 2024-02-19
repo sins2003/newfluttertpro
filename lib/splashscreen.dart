@@ -33,7 +33,7 @@ class _splashscreenState extends State<splashscreen> {
                 image: AssetImage("assets/images/bg1.jpg"), fit: BoxFit.fill)),
         child: Center(
           child: Image(
-            image: AssetImage("assets/images/game png.png"),
+            image: AssetImage("assets/images/game.png"),
             height: 100,
             width: 100,
           ),

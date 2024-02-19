@@ -44,7 +44,7 @@ class sample extends StatelessWidget {
               color: Colors.black,
               size: 50,
             ),
-            Image(image: AssetImage("assets/images/game png.png")),
+            Image(image: AssetImage("assets/images/game.png")),
             Text(
               "flutter",
               style: TextStyle(
