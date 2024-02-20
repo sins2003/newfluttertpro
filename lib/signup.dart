@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:newfluttertpro/loginpage.dart';
 
 class signup extends StatelessWidget {
   @override
@@ -65,7 +66,13 @@ class signup extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 50),
-              child: ElevatedButton(onPressed: () {}, child: Text("Sign Up"),),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => login()));
+                },
+                child: Text("Sign Up"),
+              ),
             )
           ],
         ),
