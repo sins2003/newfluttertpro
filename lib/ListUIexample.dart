@@ -37,14 +37,14 @@ class _listuiState extends State<listui> {
           "List View Builder",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.blue,
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
           return Card(
             color: Colors.blue[clr[index]],
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.blue,
