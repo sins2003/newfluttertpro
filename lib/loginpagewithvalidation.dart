@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newfluttertpro/signupvalidation.dart';
+
+import 'homepage.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -42,18 +45,32 @@ class _loginpagewithvalidationState extends State<loginpagewithvalidation> {
                 padding: const EdgeInsets.only(top: 40,left: 20,right: 20),
                 child: TextFormField(
                   validator: (email){
-                    if(email!.isEmpty && !email.contains('@') && !email.contains('.')){
+                    if(email!.isEmpty || !email.contains('@') || !email.contains('.')){
                       return "please enter a valid email";
                     }
                     else{
                       return null;
                     }
                   },
+                  decoration: InputDecoration(
+                    labelText: "E-mail",
+                    hintText: "e-mail",
+                    prefixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(40))
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
                 child: TextFormField(
+                  validator: (name){
+                    if(name!.isEmpty){
+                      return "enter user name";
+                    }
+                    else{
+                      return null;
+                    }
+                  },
                   decoration: InputDecoration(
                       hintText: "username",
                       labelText: "User Name",
@@ -66,7 +83,7 @@ class _loginpagewithvalidationState extends State<loginpagewithvalidation> {
                 padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
                 child: TextFormField(
                   validator: (password){
-                    if(password!.isEmpty && password.length<6){
+                    if(password!.isEmpty || password.length<6){
                       return "please enter valid password";
                     }
                     else{
@@ -117,7 +134,9 @@ class _loginpagewithvalidationState extends State<loginpagewithvalidation> {
                 ),
               ),
               TextButton(
-                  onPressed: () {}, child: Text("Not an user? create account"))
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>signupvalidate()));
+                  }, child: Text("Not an user? create account"))
             ],
           ),
         ),

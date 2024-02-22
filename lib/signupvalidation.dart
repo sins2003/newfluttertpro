@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newfluttertpro/loginpagewithvalidation.dart';
+
+import 'homepage.dart';
 
 class signupvalidate extends StatefulWidget {
   @override
@@ -17,6 +20,7 @@ class _signupvalidateState extends State<signupvalidate> {
       body: Container(
         color: Colors.cyan,
         child: Form(
+          key: Formkey,
           child: Column(
             children: [
               Padding(
@@ -33,6 +37,14 @@ class _signupvalidateState extends State<signupvalidate> {
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
                 child: TextFormField(
+                  validator: (name){
+                    if(name!.isEmpty){
+                      return "enter username";
+                    }
+                    else{
+                      return null;
+                    }
+                  },
                   decoration: InputDecoration(
                       labelText: "Useer Name",
                       hintText: "username",
@@ -45,9 +57,9 @@ class _signupvalidateState extends State<signupvalidate> {
                 padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
                 child: TextFormField(
                   validator: (email) {
-                    if (email!.isEmpty &&
-                        !email.contains('@') &&
-                        !email.contains('!')) {
+                    if (email!.isEmpty ||
+                        !email.contains('@') ||
+                        !email.contains('.')) {
                       return "please enter valid email";
                     } else {
                       return null;
@@ -67,7 +79,7 @@ class _signupvalidateState extends State<signupvalidate> {
                   obscuringCharacter: "*",
                   obscureText: show,
                   validator: (password) {
-                    if (password!.isEmpty && password.length > 6) {
+                    if (password!.isEmpty || password.length < 6) {
                       return "password is invalid";
                     } else {
                       return null;
@@ -100,7 +112,7 @@ class _signupvalidateState extends State<signupvalidate> {
                   obscuringCharacter: "*",
                   obscureText: show,
                   validator: (password) {
-                    if (password!.isEmpty && password.length > 6) {
+                    if (password!.isEmpty || password.length < 6) {
                       return "please enter valid password";
                     } else {
                       return null;
@@ -131,13 +143,11 @@ class _signupvalidateState extends State<signupvalidate> {
                 padding: const EdgeInsets.only(top: 50),
                 child: ElevatedButton(
                   onPressed: () {
-                    final valid=Formkey.currentState!.validate();
-                    if(valid){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>homepage()));
-                    }
-                    else{
-                      
-                    }
+                    final valid = Formkey.currentState!.validate();
+                    if (valid) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => loginpagewithvalidation()));
+                    } else {}
                   },
                   child: Text("Register"),
                   style: ElevatedButton.styleFrom(
