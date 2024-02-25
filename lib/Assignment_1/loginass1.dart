@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newfluttertpro/Assignment_1/HomeAss1.dart';
+import 'package:newfluttertpro/Assignment_1/RegisterAss1.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: loginass1(),
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: loginass1(),
+//   ));
+// }
 
 class loginass1 extends StatefulWidget {
   @override
@@ -59,6 +60,7 @@ class _loginass1State extends State<loginass1> {
                   decoration: InputDecoration(
                       labelText: "User Name",
                       hintText: "username",
+                      prefixIcon: Icon(Icons.person),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50))),
                 ),
@@ -123,7 +125,9 @@ class _loginass1State extends State<loginass1> {
               Padding(
                 padding: EdgeInsets.only(top: 20),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterAss1()));
+                    },
                     child: Text("Not an user? Create an account")),
               )
             ],
