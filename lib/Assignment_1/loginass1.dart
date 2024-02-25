@@ -112,14 +112,10 @@ class _loginass1State extends State<loginass1> {
                   },
                   child: Text(
                     "Log in",
-                    style: GoogleFonts.bebasNeue(),
+                    style: GoogleFonts.bebasNeue(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      )),
+                      backgroundColor: Colors.orange),
                 ),
               ),
               Padding(

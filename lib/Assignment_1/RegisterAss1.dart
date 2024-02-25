@@ -161,11 +161,9 @@ class _RegisterAss1State extends State<RegisterAss1> {
                           MaterialPageRoute(builder: (context) => loginass1()));
                     } else {}
                   },
-                  child: Text("Register", style: GoogleFonts.bebasNeue()),
+                  child: Text("Register", style: GoogleFonts.bebasNeue(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      textStyle: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w400)),
+                      backgroundColor: Colors.orange),
                 ),
               )
             ],
