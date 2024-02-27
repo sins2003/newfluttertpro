@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: HomeAss(),
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: HomeAss(),
+//   ));
+// }
 
 class HomeAss extends StatefulWidget {
   @override
@@ -34,7 +34,7 @@ class _HomeAssState extends State<HomeAss> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
         itemBuilder: (context, index) {
           return Card(
             color: Colors.yellow,
@@ -44,6 +44,7 @@ class _HomeAssState extends State<HomeAss> {
             child: Row(
               children: [
                 Container(
+                  decoration: BoxDecoration(shape: BoxShape.rectangle,borderRadius: BorderRadius.circular(10)),
                   height: 100,
                   width: 200,
                   child: Card(
@@ -69,7 +70,7 @@ class _HomeAssState extends State<HomeAss> {
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
                             country[index],
-                            style: TextStyle(fontWeight: FontWeight.w500),
+                            style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
                         Text("Population: ${info[index]}")
@@ -81,7 +82,7 @@ class _HomeAssState extends State<HomeAss> {
             ),
           );
         },
-        itemCount: place.length,
+        itemCount: place.length, separatorBuilder: (context,index) { return Divider(thickness: 3,color: Colors.grey,); },
       ),
     );
   }
