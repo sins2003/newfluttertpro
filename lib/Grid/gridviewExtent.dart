@@ -4,11 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: gridviewbuilderexample(),
+    home: gridviewextent(),
   ));
 }
 
-class gridviewbuilderexample extends StatelessWidget {
+class gridviewextent extends StatelessWidget {
   List<IconData> icn = [
     FontAwesomeIcons.car,
     FontAwesomeIcons.bicycle,
@@ -46,30 +46,24 @@ class gridviewbuilderexample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Grid View Builder'),
-      ),
-      body: GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemBuilder: (context, index) {
+      body: GridView.extent(
+        maxCrossAxisExtent: 300,
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 10,
+        children: List.generate(9, (index) {
           return Card(
             color: clr[index],
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 100),
                   child: Icon(icn[index]),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Text(name[index]),
-                ),
+                Text(name[index]),
               ],
             ),
           );
-        },
-        itemCount: name.length,
+        }),
       ),
     );
   }
