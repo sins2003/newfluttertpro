@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: staceg(),
+    home: staceg(),debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -15,31 +15,33 @@ class staceg extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.blue[100],
+        color: Colors.blue[50],
         child: Column(
           children: [
             Stack(
               children: [
                 Container(
-                  width: double.infinity,
                   height: 220,
-                  color: Colors.blueGrey[600],
+                  color: Colors.blue[900],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 160),
-                  child: Center(
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage(
-                          "assets/images/person.png",
-                        ),
-                      )),
+                Positioned(child: Text("Profile",style: TextStyle(fontWeight: FontWeight.w700,color: Colors.white,fontSize: 25),),left: 50,top: 80,),
+                Positioned(child: TextButton(onPressed: (){}, child: Text("Edit Your Profile",style: TextStyle(color: Colors.grey,fontSize: 17),)),top: 115,left: 39,),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 160),
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage(
+                        "assets/images/person.png",
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
             Padding(
               padding: const EdgeInsets.only(top: 50),
-              child: Text("Mishal Haneeef"),
+              child: Text("Mishal Haneeef",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w500,color: Colors.blue[900]),),
             ),
             Padding(
               padding:EdgeInsets.only(top:80),
