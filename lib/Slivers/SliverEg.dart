@@ -16,6 +16,7 @@ class slivereg extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            floating: true,
             pinned: true,
             backgroundColor: Colors.red,
             title: Text("App Bar"),
@@ -29,7 +30,7 @@ class slivereg extends StatelessWidget {
               title: Container(
                 width: double.infinity,
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),
                   color: Colors.blue[50],
                 ),
                 child: TextField(
