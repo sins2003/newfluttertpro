@@ -15,7 +15,8 @@ class naviexample1 extends StatefulWidget {
 }
 
 class _naviexample1State extends State<naviexample1> {
-  var index=0;
+
+  var index = 0;
   var scrn = [showeg(), Text("Cart"), Text("Account")];
 
   @override
@@ -64,9 +65,9 @@ class _naviexample1State extends State<naviexample1> {
         selectedItemColor: Colors.blue,
         type: BottomNavigationBarType.fixed,
         currentIndex: index,
-        onTap: (tabindex){
+        onTap: (tabindex) {
           setState(() {
-            index=tabindex;
+            index = tabindex;
           });
         },
         items: [
@@ -78,12 +79,23 @@ class _naviexample1State extends State<naviexample1> {
       ),
     );
   }
-
 }
-class showeg extends StatelessWidget{
+
+class showeg extends StatelessWidget {
+  var img = [
+    "assets/images/FarmerAppImaages/pexels-engin-akyurt-1435904.jpg",
+    "assets/images/FarmerAppImaages/pexels-hana-mara-3650647.jpg",
+    "assets/images/FarmerAppImaages/pexels-kaichieh-chan-708777.jpg",
+    "assets/images/FarmerAppImaages/pexels-photomix-company-235294.jpg",
+    "assets/images/FarmerAppImaages/pexels-pixabay-46174.jpg",
+    "assets/images/FarmerAppImaages/pexels-pixabay-87626.jpg",
+    "assets/images/FarmerAppImaages/pexels-pixabay-161559.jpg",
+    "assets/images/FarmerAppImaages/pexels-pixabay-533280.jpg",
+    "assets/images/FarmerAppImaages/pexels-wendy-wei-1656663.jpg"
+  ];
   @override
   Widget build(BuildContext context) {
-  return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Container(
@@ -92,8 +104,7 @@ class showeg extends StatelessWidget{
             child: Wrap(
               children: [
                 Padding(
-                  padding:
-                  const EdgeInsets.only(left: 70, right: 50, top: 15),
+                  padding: const EdgeInsets.only(left: 70, right: 50, top: 15),
                   child: Container(
                     height: 20,
                     width: 90,
@@ -127,8 +138,7 @@ class showeg extends StatelessWidget{
                   ),
                 ),
                 Padding(
-                  padding:
-                  const EdgeInsets.only(right: 50, left: 50, top: 15),
+                  padding: const EdgeInsets.only(right: 50, left: 50, top: 15),
                   child: Container(
                     height: 20,
                     width: 90,
@@ -166,18 +176,71 @@ class showeg extends StatelessWidget{
                   enlargeFactor: 0.2,
                   scrollDirection: Axis.horizontal),
               items: [
-                Image(image: AssetImage("assets/images/londen.jpg")),
-                Image(image: AssetImage("assets/images/portugal.jpg")),
                 Image(
-                    image: AssetImage("assets/images/rocky mountain.jpg")),
-                Image(image: AssetImage("assets/images/delhi.jpg")),
+                    image: AssetImage(
+                        "assets/images/FarmerAppImaages/pexels-engin-akyurt-1435904.jpg")),
+                Image(
+                    image: AssetImage(
+                        "assets/images/FarmerAppImaages/pexels-kaichieh-chan-708777.jpg")),
+                Image(
+                    image: AssetImage(
+                        "assets/images/FarmerAppImaages/pexels-pixabay-87626.jpg")),
+                Image(
+                    image: AssetImage(
+                        "assets/images/FarmerAppImaages/pexels-wendy-wei-1656663.jpg")),
               ],
             ),
           ),
           Container(
             width: double.infinity,
             height: 100,
-            color: Colors.blue,
+            child: Center(
+                child: Container(
+              height: 70,
+              width: 450,
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.black)),
+              child: Wrap(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 10),
+                    child: Column(
+                      children: [
+                        Icon(
+                          CupertinoIcons.time_solid,
+                          color: Colors.black,
+                        ),
+                        Text("30 Min Policy")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50, top: 10),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.perm_contact_calendar_sharp,
+                          color: Colors.black,
+                        ),
+                        Text("Tracebility")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40, top: 10),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.house,
+                          color: Colors.black,
+                        ),
+                        Text("Local Sourroundings")
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 310),
@@ -189,10 +252,9 @@ class showeg extends StatelessWidget{
                   fontSize: 20),
             ),
           ),
-          Container(),
+
         ],
       ),
     );
   }
-
 }
