@@ -58,7 +58,8 @@ class gridcustom extends StatelessWidget {
                 ],
               ),
             );
-          },childCount: name.length)),
+          },childCount: name.length)
+      ),
     );
   }
 }

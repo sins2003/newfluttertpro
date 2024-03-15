@@ -83,7 +83,7 @@ class sliverui extends StatelessWidget {
                 children: [
                   Positioned(
                     height: 80,
-                    width: 80,
+                    width: 100,
                     child: Container(
                       child: Card(
                         color: Colors.pink,
@@ -99,11 +99,11 @@ class sliverui extends StatelessWidget {
                       ),
                     ),
                     top: 20,
-                    left: 100,
+                    left: 50,
                   ),
                   Positioned(
                     height: 80,
-                    width: 80,
+                    width: 100,
                     child: Card(
                       color: Colors.blue,
                       child: Column(
@@ -121,7 +121,7 @@ class sliverui extends StatelessWidget {
                   ),
                   Positioned(
                     height: 80,
-                    width: 80,
+                    width: 100,
                     child: Card(
                       color: Colors.yellow,
                       child: Column(
@@ -135,7 +135,7 @@ class sliverui extends StatelessWidget {
                       ),
                     ),
                     top: 20,
-                    left: 300,
+                    right: 50,
                   ),
                 ],
               ),
