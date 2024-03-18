@@ -175,20 +175,14 @@ class profilui extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: Container(
-                            // decoration: BoxDecoration(
-                            //     color: Colors.grey[300],
-                            //     borderRadius: BorderRadius.circular(50)),
-                            child: Card(
-                              color: Colors.grey[300],
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: ExpansionTile(
-                                leading: FaIcon(Icons.person_add_sharp),
-                                title: Text("Invite a friend"),
-                                trailing: FaIcon(CupertinoIcons.forward),
-                                children: [ListTile()],
-                              ),
+                            decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(50)),
+                            child: ExpansionTile(
+                              leading: FaIcon(Icons.person_add_sharp),
+                              title: Text("Invite a friend"),
+                              trailing: FaIcon(CupertinoIcons.forward),
+                              children: [ListTile()],
                             ),
                           ),
                         ),
