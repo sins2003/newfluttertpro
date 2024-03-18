@@ -119,6 +119,7 @@ class profilui extends StatelessWidget {
                                 color: Colors.grey[300],
                                 borderRadius: BorderRadius.circular(50)),
                             child: ExpansionTile(
+
                               leading: Icon(Icons.person),
                               title: Text("Privacy"),
                               trailing: Icon(CupertinoIcons.forward),
@@ -133,6 +134,7 @@ class profilui extends StatelessWidget {
                                 color: Colors.grey[300],
                                 borderRadius: BorderRadius.circular(50)),
                             child: ExpansionTile(
+
                               leading: Icon(Icons.history),
                               title: Text("Purchase History"),
                               trailing: Icon(CupertinoIcons.forward),
@@ -147,6 +149,7 @@ class profilui extends StatelessWidget {
                                 color: Colors.grey[300],
                                 borderRadius: BorderRadius.circular(50)),
                             child: ExpansionTile(
+
                               leading: Icon(Icons.help_outline),
                               title: Text("Help & Support"),
                               trailing: Icon(CupertinoIcons.forward),
@@ -161,6 +164,7 @@ class profilui extends StatelessWidget {
                                 color: Colors.grey[300],
                                 borderRadius: BorderRadius.circular(50)),
                             child: ExpansionTile(
+
                               leading: Icon(Icons.settings),
                               title: Text("Settings"),
                               trailing: Icon(CupertinoIcons.forward),
@@ -171,14 +175,20 @@ class profilui extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(50)),
-                            child: ExpansionTile(
-                              leading: FaIcon(Icons.person_add_sharp),
-                              title: Text("Invite a friend"),
-                              trailing: FaIcon(CupertinoIcons.forward),
-                              children: [ListTile()],
+                            // decoration: BoxDecoration(
+                            //     color: Colors.grey[300],
+                            //     borderRadius: BorderRadius.circular(50)),
+                            child: Card(
+                              color: Colors.grey[300],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: ExpansionTile(
+                                leading: FaIcon(Icons.person_add_sharp),
+                                title: Text("Invite a friend"),
+                                trailing: FaIcon(CupertinoIcons.forward),
+                                children: [ListTile()],
+                              ),
                             ),
                           ),
                         ),
