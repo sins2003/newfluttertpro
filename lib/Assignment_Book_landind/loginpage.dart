@@ -75,7 +75,7 @@ class _LoginBookState extends State<LoginBook> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => mainbook(),));
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => mainbook(),));
                         },
                         child: Text(
                           "Log In",
