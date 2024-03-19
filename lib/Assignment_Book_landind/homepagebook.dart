@@ -283,7 +283,7 @@ class _homebookState extends State<homebook> {
                                         onPressed: () {},
                                         child: Text(
                                           "Borrow it",
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: Colors.black),
                                         ),
                                       ),
                                       height: 20,
@@ -370,7 +370,7 @@ class _homebookState extends State<homebook> {
                                       onPressed: () {},
                                       child: Text(
                                         "Borrow it",
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(color: Colors.black),
                                       ),
                                     ),
                                     height: 20,
@@ -456,7 +456,7 @@ class _homebookState extends State<homebook> {
                                       onPressed: () {},
                                       child: Text(
                                         "Borrow it",
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(color: Colors.black),
                                       ),
                                     ),
                                     height: 20,
