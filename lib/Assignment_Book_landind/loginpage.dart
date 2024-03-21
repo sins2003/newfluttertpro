@@ -9,6 +9,9 @@ class LoginBook extends StatefulWidget {
 }
 
 class _LoginBookState extends State<LoginBook> {
+  GlobalKey<FormState> formkey = GlobalKey();
+  bool showpas = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,61 +34,95 @@ class _LoginBookState extends State<LoginBook> {
                 color: Colors.white),
             height: 400,
             width: 400,
-            child: Column(
-              children: [
-                Center(
-                    child: Text(
-                  "Login Page",
-                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30),
-                )),
-                Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 50, left: 20, right: 20),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.person),
-                            labelText: "UserName",
-                            hintText: "username",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40))),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 20),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.password),
-                            suffixIcon: Icon(Icons.visibility_off),
-                            labelText: "Password",
-                            hintText: "Password",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40))),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 50),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.yellow),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => mainbook(),
-                              ));
-                        },
-                        child: Text(
-                          "Log In",
-                          style: GoogleFonts.bebasNeue(color: Colors.white),
+            child: Form(
+              key: formkey,
+              child: Column(
+                children: [
+                  Center(
+                      child: Text(
+                    "Login Page",
+                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30),
+                  )),
+                  Column(
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 50, left: 20, right: 20),
+                        child: TextFormField(
+                          validator: (name) {
+                            if (name!.isEmpty) {
+                              return "enter user name";
+                            } else {
+                              return null;
+                            }
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.person),
+                              labelText: "UserName",
+                              hintText: "username",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40))),
                         ),
                       ),
-                    )
-                  ],
-                )
-              ],
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, right: 20),
+                        child: TextFormField(
+                          obscureText: showpas,
+                          obscuringCharacter: "*",
+                          validator: (pass) {
+                            if (pass!.isEmpty || pass.length < 6) {
+                              return "pleasse enter valid pasword";
+                            } else
+                              return null;
+                          },
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.password),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (showpas == true) {
+                                      showpas = false;
+                                    } else {
+                                      showpas = true;
+                                    }
+                                  });
+                                },
+                                icon: Icon(showpas == true
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                              ),
+                              labelText: "Password",
+                              hintText: "Password",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40))),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow),
+                          onPressed: () {
+                            final valid = formkey.currentState!.validate();
+                            if (valid) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => mainbook(),
+                                  ));
+                            } else {}
+                          },
+                          child: Text(
+                            "Log In",
+                            style: GoogleFonts.bebasNeue(color: Colors.white),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

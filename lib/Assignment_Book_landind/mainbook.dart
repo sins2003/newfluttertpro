@@ -19,7 +19,7 @@ class _mainbookState extends State<mainbook> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.yellow,
+        selectedItemColor: Colors.yellow[600],
         currentIndex: index,
         type: BottomNavigationBarType.fixed,
         onTap: (tabindex) {

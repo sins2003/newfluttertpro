@@ -31,13 +31,12 @@ class _homebookState extends State<homebook> {
               Center(
                 child: Container(
                   height: 50,
-                  width: 450,
+                  width: 430,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.white),
                   child: TextField(
                     decoration: InputDecoration(
-                        border: InputBorder.none,
                         hintText: "Search books",
                         suffixIcon: FaIcon(CupertinoIcons.search)),
                   ),
