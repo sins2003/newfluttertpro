@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newfluttertpro/Data%20Passing/2ndscreen.dart';
+import 'package:newfluttertpro/Data%20Passing/Splash.dart';
 import 'package:newfluttertpro/Data%20Passing/datas.dart';
 
 void main() {
@@ -35,7 +36,7 @@ class _datapassingmainState extends State<datapassingmain> {
                   ),
                 ),
               ),
-              onTap:() => getinfo(context,product){},
+              onTap:() => (),
             )).toList(),
       ),
     );

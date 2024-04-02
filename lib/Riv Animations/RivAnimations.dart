@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class productdetail extends StatelessWidget{
+class riveanimations extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container(color: Colors.yellow,),);
+    return Scaffold(
+
+    );
   }
 }
