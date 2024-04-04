@@ -46,6 +46,10 @@ dependencies:
   readmore: ^2.2.0
   intro_screen_onboarding_flutter: ^1.0.0
   rive: ^0.13.1
+  flutter_sizer: ^1.0.5
+  image_picker: ^1.0.7
+  video_player: ^2.8.4
+  google_maps_flutter: ^2.6.0
 
 dev_dependencies:
   flutter_test:
