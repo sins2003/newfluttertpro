@@ -32,4 +32,17 @@ class sqlhelper {
     final db=await sqlhelper.myData(); ///to open data base
     return db.query('notes',orderBy: 'id'); ///view table orderby id
   }
+
+  ///update data
+  static Future<int> updateNote(int id,String titlenew,String notenew)async{
+    final db=await sqlhelper.myData();
+
+    final newdata={
+      'title':titlenew,
+      'note':notenew,
+      'createdAt': DateTime.now().toString()
+    };
+    final result=await db.update('notes', newdata,where: 'id=?',whereArgs: [id]);
+    return result;
+  }
 }
