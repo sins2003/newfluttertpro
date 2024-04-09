@@ -1,0 +1,35 @@
+import 'package:sqflite/sqflite.dart' as sql;
+
+class sqlhelper {
+  ///1.create database
+  static Future<sql.Database> myData() async {
+    return sql.openDatabase(
+      'mynote.db',
+      version: 1,
+      onCreate: (sql.Database database, int version) async {
+        await createTable1(database);
+      },
+    );
+  }
+
+  ///2.create table
+  static Future<void> createTable1(sql.Database database) async {
+    await database.execute("""CRETE TABLE notes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title TEXT,
+    note TEXT,
+    createdAt TIMESTAMP NOT NULL DEAFAULT CURRENT_TIMESTAMP)""");
+  }
+  ///insert data
+  static Future<int> createNote (String title,String note)async{
+    final db=await sqlhelper.myData();
+    final data={'title':title,'note':note};
+    final id=await db.insert("notes", data,conflictAlgorithm: sql.ConflictAlgorithm.replace);
+    return id;
+  }
+  ///read all data from table
+  static Future<List<Map<String,dynamic>>> readNotes()async{
+    final db=await sqlhelper.myData(); ///to open data base
+    return db.query('notes',orderBy: 'id'); ///view table orderby id
+  }
+}

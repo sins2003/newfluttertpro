@@ -51,6 +51,7 @@ dependencies:
   video_player: ^2.8.4
   google_maps_flutter: ^2.6.0
   shared_preferences: ^2.2.2
+  sqflite:
 
 dev_dependencies:
   flutter_test:
