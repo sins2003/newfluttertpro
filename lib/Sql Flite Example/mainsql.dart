@@ -31,28 +31,30 @@ class _mainsqlState extends State<mainsql> {
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: note_from_db.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(note_from_db[index]['title']),
-                    subtitle: Text(note_from_db[index]['note']),
-                    trailing: SizedBox(
-                      child: Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                showForm(note_from_db[index]['id']);
-                              },
-                              icon: Icon(Icons.edit)),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.delete))
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
+        itemCount: note_from_db.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              title: Text(note_from_db[index]['title']),
+              subtitle: Text(note_from_db[index]['note']),
+              trailing: SizedBox(
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          showForm(note_from_db[index]['id']);
+                        },
+                        icon: Icon(Icons.edit)),
+                    IconButton(onPressed: () {
+                      deleteNote(note_from_db[index]['id']);
+                    }, icon: Icon(Icons.delete))
+                  ],
+                ),
+              ),
             ),
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => showForm(null),
         child: Icon(Icons.add),
@@ -64,10 +66,10 @@ class _mainsqlState extends State<mainsql> {
   final note = TextEditingController();
 
   void showForm(int? id) async {
-    if(id!=null){
-      final existingNote= note_from_db.firstWhere((note) => note['id']==id);
-      title.text=existingNote['title'];
-      note.text=existingNote['note'];
+    if (id != null) {
+      final existingNote = note_from_db.firstWhere((note) => note['id'] == id);
+      title.text = existingNote['title'];
+      note.text = existingNote['note'];
     }
 
     showModalBottomSheet(
@@ -79,7 +81,10 @@ class _mainsqlState extends State<mainsql> {
               top: 10,
               left: 10,
               right: 10,
-              bottom: MediaQuery.of(context).viewInsets.bottom + 120),
+              bottom: MediaQuery
+                  .of(context)
+                  .viewInsets
+                  .bottom + 120),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -106,11 +111,11 @@ class _mainsqlState extends State<mainsql> {
                     if (id != null) {
                       await updateNote(id);
                     }
-                    title.text="";
-                    note.text="";
+                    title.text = "";
+                    note.text = "";
                     Navigator.of(context).pop();
                   },
-                  child: Text(id==null?"ADD NOTE":"UPDATE"))
+                  child: Text(id == null ? "ADD NOTE" : "UPDATE"))
             ],
           ),
         );
@@ -122,5 +127,15 @@ class _mainsqlState extends State<mainsql> {
     await sqlhelper.createNote(title.text, note.text);
   }
 
-  Future<void> updateNote(int id) async {}
+  Future<void> updateNote(int id) async {
+    await sqlhelper.updateNote(id, title.text, note.text);
+    refreshData();
+  }
+
+  void deleteNote(int id) async {
+    await sqlhelper.deleteNote(id);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Note Deleted")));
+    refreshData();
+  }
 }

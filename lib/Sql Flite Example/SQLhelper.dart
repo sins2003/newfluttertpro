@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
 class sqlhelper {
@@ -44,5 +45,13 @@ class sqlhelper {
     };
     final result=await db.update('notes', newdata,where: 'id=?',whereArgs: [id]);
     return result;
+  }
+  static Future<void> deleteNote(int id)async{
+    final db=await sqlhelper.myData();
+    try{
+      await db.delete('notes',where: 'id=?',whereArgs: [id]);
+    }catch(err){
+      debugPrint("something is wrong");
+    }
   }
 }
