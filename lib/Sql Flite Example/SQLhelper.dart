@@ -15,11 +15,11 @@ class sqlhelper {
 
   ///2.create table
   static Future<void> createTable1(sql.Database database) async {
-    await database.execute("""CRETE TABLE notes(
+    await database.execute("""CREATE TABLE notes(
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     title TEXT,
     note TEXT,
-    createdAt TIMESTAMP NOT NULL DEAFAULT CURRENT_TIMESTAMP)""");
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)""");
   }
   ///insert data
   static Future<int> createNote (String title,String note)async{

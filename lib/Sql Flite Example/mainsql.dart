@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newfluttertpro/Sql%20Flite%20Example/SQLhelper.dart';
 
+void main(){
+  runApp(MaterialApp(home: mainsql(),));
+}
+
 class mainsql extends StatefulWidget {
   @override
   State<mainsql> createState() => _mainsqlState();
@@ -34,11 +38,12 @@ class _mainsqlState extends State<mainsql> {
         itemCount: note_from_db.length,
         itemBuilder: (context, index) {
           return Card(
+            color: Colors.yellow,
             child: ListTile(
               title: Text(note_from_db[index]['title']),
               subtitle: Text(note_from_db[index]['note']),
               trailing: SizedBox(
-                child: Row(
+                child: Wrap(
                   children: [
                     IconButton(
                         onPressed: () {
