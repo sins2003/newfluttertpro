@@ -17,9 +17,13 @@ class splash extends StatelessWidget{
       body: Container(
         child: Column(
           children: [
-            // Image(image: AssetImage(""))
             Padding(
-              padding: const EdgeInsets.only(top: 450),
+              padding: const EdgeInsets.only(top: 50),
+              child: Center(child: Image(height:400,width: 400,
+                  image: AssetImage("assets/images/welcome.png"))),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top:30),
               child: Center(
                 child: Container(width:400,
                   child: ElevatedButton(
