@@ -20,7 +20,6 @@ class hiveeg extends StatefulWidget {
 class _mainsqlState extends State<hiveeg> {
   final tbox = Hive.box('taskbox');
   List<Map<String, dynamic>> task = [];
-  bool isLoading = true;
 
   Future<void> CreateTask(Map<String, dynamic> task) async {
     await tbox.add(task);
@@ -31,7 +30,6 @@ class _mainsqlState extends State<hiveeg> {
   void initState() {
     super.initState();
     loadTask();
-    isLoading=false;
   }
 
   void loadTask()async{
@@ -43,13 +41,12 @@ class _mainsqlState extends State<hiveeg> {
       task=data.reversed.toList();
     });
   }
-  F
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: isLoading
+      body: task.isEmpty
           ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
+          : ListView.builder(itemCount: task.length,
               itemBuilder: (context, index) {
                 return Card(
                   color: Colors.yellow,
@@ -59,9 +56,7 @@ class _mainsqlState extends State<hiveeg> {
                     trailing: SizedBox(
                       child: Wrap(
                         children: [
-                          IconButton(onPressed: () {
-                            showForm(id)
-                          }, icon: Icon(Icons.edit)),
+                          IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
                           IconButton(onPressed: () {}, icon: Icon(Icons.delete))
                         ],
                       ),
@@ -115,8 +110,8 @@ class _mainsqlState extends State<hiveeg> {
                       CreateTask({'name': title.text, 'details': note.text});
                     }
                     if (id != null) {
-                      UpdateTask(
-                          id, {'name': title.text, 'details': note.text});
+                      // UpdateTask(
+                      //     id, {'name': title.text, 'details': note.text});
                     }
                     title.text = "";
                     note.text = "";
