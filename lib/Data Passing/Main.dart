@@ -36,9 +36,13 @@ class _datapassingmainState extends State<datapassingmain> {
                   ),
                 ),
               ),
-              onTap:() => (),
+              onTap:() => getnote(context,product['id']),
             )).toList(),
       ),
     );
+  }
+
+  getnote(BuildContext context, product) {
+    Navigator.of(context).pushNamed('secondpage',arguments: product);
   }
 }

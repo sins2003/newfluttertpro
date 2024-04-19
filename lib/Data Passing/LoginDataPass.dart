@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:newfluttertpro/Assignment_Book_landind/mainbook.dart';
-import 'package:newfluttertpro/Data%20Passing/2ndscreen.dart';
+import 'Main.dart';
 
 class LoginDataPass extends StatefulWidget {
   @override
@@ -110,7 +109,7 @@ class _LoginBookState extends State<LoginDataPass> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => productdetail(),
+                                    builder: (context) => datapassingmain(),
                                   ));
                             } else {}
                           },
