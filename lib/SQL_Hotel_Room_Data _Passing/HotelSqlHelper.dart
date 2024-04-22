@@ -46,7 +46,7 @@ class SQLHelprHotel {
   static Future<List<Map>> CheckUser(String email, String password) async {
     final db = await SQLHelprHotel.OpenDB();
     final data = await db.rawQuery(
-        "SELECT * FROM userinfo WHERE email = $email AND password = $password");
+        "SELECT * FROM userinfo WHERE email = '$email' AND password = '$password'");
     if (data.isNotEmpty) {
       return data;
     } else {

@@ -1,111 +1,98 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:newfluttertpro/SQL%20Admin%20Login/adminpage.dart';
-import 'package:newfluttertpro/SQL%20Admin%20Login/singup.dart';
-import 'package:newfluttertpro/SQL%20Admin%20Login/sqlhelper.dart';
-import 'package:newfluttertpro/SQL%20Admin%20Login/userpage.dart';
 
-class login extends StatefulWidget {
+
+import 'HotalMain.dart';
+import 'HotelAdmin.dart';
+import 'HotelSignup.dart';
+import 'HotelSqlHelper.dart';
+
+class HotelLogin extends StatefulWidget {
   @override
-  State<login> createState() => _loginState();
+  State<HotelLogin> createState() => _HotelLoginState();
 }
 
-class _loginState extends State<login> {
-  var coemail = TextEditingController();
-  var copass = TextEditingController();
+class _HotelLoginState extends State<HotelLogin> {
+  GlobalKey<FormState> formkey = GlobalKey();
+  var lemail = TextEditingController();
+  var lpass = TextEditingController();
+  bool showpass = true;
 
-  void LoginCheck(String email, String password) async {
-    if (email == 'admin@gmail.com' && password == 'admin123') {
+  void LoginCheckRoom(String email, String password) async {
+    if (email == "admin@gmail.com" && password == "admin123") {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => adminpage(),
+            builder: (context) => HotelAdminPage(),
           ));
     } else {
-      var data = await sqlhelpeeradmin.CheckLogin(email, password);
+      var data = await SQLHelprHotel.CheckUser(email, password);
       if (data.isNotEmpty) {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => userpage(data: data),
+              builder: (context) => HotelMainPage(data: data,),
             ));
       }
     }
   }
 
-  bool showpass = true;
-  GlobalKey<FormState> formkey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[200],
       appBar: AppBar(
-        backgroundColor: Colors.yellow[700],
-        title: Text(
-          "LOGIN PAGE",
-          style: TextStyle(fontSize: 20),
-        ),
+        backgroundColor: Colors.blue,
+        title: Text("LOGIN"),
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: Center(
-          child: Container(
-            height: 500,
-            width: 450,
+      backgroundColor: Colors.grey,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Center(
             child: Form(
               key: formkey,
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Text(
-                      "LOG IN",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-                    ),
+                    padding: const EdgeInsets.only(top: 50),
+                    child: Text("LOGIN PAGE"),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 50, left: 30, right: 30),
+                    padding: const EdgeInsets.only(top: 50, left: 30, right: 30),
                     child: TextFormField(
-                      controller: coemail,
+                      controller: lemail,
                       validator: (email) {
                         if (email!.isEmpty ||
-                            !email.contains('@') ||
-                            !email.contains('.')) {
-                          return "please enter valid email";
-                        } else
-                          return null;
-                      },
-                      decoration: InputDecoration(
-                          hintText: "E mail",
-                          labelText: "E-MAIL",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          suffixIcon: Icon(Icons.person)),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 30, right: 30),
-                    child: TextFormField(
-                      controller: copass,
-                      obscuringCharacter: "*",
-                      obscureText: showpass,
-                      validator: (password) {
-                        if (password!.isEmpty || password.length < 6) {
-                          return "please enter valid password";
+                            !email.contains('.') ||
+                            !email.contains('@')) {
+                          return "please Enter Valid Email";
                         } else {
                           return null;
                         }
                       },
                       decoration: InputDecoration(
-                          hintText: "password",
-                          labelText: "PASSWORD",
+                          hintText: "E-mail",
+                          labelText: "E-mail",
+                          prefixIcon: Icon(Icons.email),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(30))),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+                    child: TextFormField(
+                      obscuringCharacter: "*",
+                      obscureText: showpass,
+                      controller: lpass,
+                      validator: (pass) {
+                        if (pass!.isEmpty || pass.length < 6) {
+                          return "please enr valid password";
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Password",
+                          labelText: "Password",
                           prefixIcon: Icon(Icons.password),
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -129,7 +116,7 @@ class _loginState extends State<login> {
                         onPressed: () {
                           final valid = formkey.currentState!.validate();
                           if (valid) {
-                            LoginCheck(coemail.text, copass.text);
+                            LoginCheckRoom(lemail.text, lpass.text);
                           } else {}
                         },
                         child: Text("Log In")),
@@ -141,10 +128,10 @@ class _loginState extends State<login> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => singup(),
+                                builder: (context) => HotelSignUp(),
                               ));
                         },
-                        child: Text("Not an user? Regster Here")),
+                        child: Text("Not an user? Register here!!")),
                   )
                 ],
               ),
