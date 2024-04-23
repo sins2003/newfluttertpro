@@ -41,6 +41,14 @@ class _mainsqlState extends State<hiveeg> {
       task=data.reversed.toList();
     });
   }
+  Future<void>updatetask(int key,Map<String,dynamic>uptask)async{
+    await tbox.put(key, uptask);
+    loadTask();
+  }
+  Future<void>deletetask(int key)async{
+    await tbox.delete(key);
+    loadTask();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +64,12 @@ class _mainsqlState extends State<hiveeg> {
                     trailing: SizedBox(
                       child: Wrap(
                         children: [
-                          IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.delete))
+                          IconButton(onPressed: () {
+                           showForm(context, task[index]['key']);
+                          }, icon: Icon(Icons.edit)),
+                          IconButton(onPressed: () {
+                            deletetask(task[index]['key']);
+                          }, icon: Icon(Icons.delete))
                         ],
                       ),
                     ),
@@ -66,7 +78,7 @@ class _mainsqlState extends State<hiveeg> {
               },
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showForm(null),
+        onPressed: () => showForm(context,null),
         child: Icon(Icons.add),
       ),
     );
@@ -75,7 +87,12 @@ class _mainsqlState extends State<hiveeg> {
   final title = TextEditingController();
   final note = TextEditingController();
 
-  void showForm(int? id) async {
+  void showForm(BuildContext context,int? id) async {
+    if(id!=null){
+      final ex_task=task.firstWhere((element) => element['key']==id);
+      title.text=ex_task['name'];
+      note.text=ex_task['details'];
+    }
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -110,14 +127,14 @@ class _mainsqlState extends State<hiveeg> {
                       CreateTask({'name': title.text, 'details': note.text});
                     }
                     if (id != null) {
-                      // UpdateTask(
-                      //     id, {'name': title.text, 'details': note.text});
+                      updatetask(
+                          id, {'name': title.text, 'details': note.text});
                     }
                     title.text = "";
                     note.text = "";
                     Navigator.of(context).pop();
                   },
-                  child: Text(id == null ? "ADD NOTE" : "UPDATE"))
+                  child: Text(id == null ? "Create Task" : "Update Task"))
             ],
           ),
         );
