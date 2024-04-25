@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:newfluttertpro/loginpagewithvalidation.dart';
+import 'package:newfluttertpro/Validations/loginpagewithvalidation.dart';
 
-import 'homepage.dart';
+import '../homepage.dart';
 
 class signupvalidate extends StatefulWidget {
   @override

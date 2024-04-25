@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../List/ListSeparation.dart';
 import '../Slivers/SliverUI1.dart';
 import '../carousel_slider/CrouelSlider.dart';
-import '../signupvalidation.dart';
+import '../Validations/signupvalidation.dart';
 
 void main() {
   runApp(MaterialApp(
