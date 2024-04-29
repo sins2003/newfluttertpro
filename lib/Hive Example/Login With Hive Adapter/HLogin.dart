@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:newfluttertpro/Hive%20Example/Login%20With%20Hive%20Adapter/Database/Database.dart';
 
+import 'Admin.dart';
 import 'HSign.dart';
 import 'Model Class/usermodel.dart';
 
@@ -13,7 +17,7 @@ void main() async{
   await Hive.initFlutter();
   Hive.registerAdapter(UserAdapter());
   Hive.openBox("user");
-  runApp(MaterialApp(
+  runApp(GetMaterialApp(
     home: Hlogin2(),
   ));
 }
@@ -109,14 +113,9 @@ class _loginpagewithvalidationState extends State<Hlogin2> {
               Padding(
                 padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
                 child: ElevatedButton(
-                  onPressed: () {
-                    final valid=formkey.currentState!.validate();
-                    if(valid){
-
-                    }
-                    else{
-
-                    }
+                  onPressed: () async{
+                    final userlist=await DBfunction.instance.GetUser();
+                    FindUser(userlist);
                   },
                   child: Text("Login"),
                   style: ElevatedButton.styleFrom(
@@ -135,4 +134,38 @@ class _loginpagewithvalidationState extends State<Hlogin2> {
       ),
     );
   }
+  Future<void> FindUser(List<User>userlist)async {
+    final email=lemail.text.trim();
+    final password=lpass1.text.trim();
+    bool userfound=false;
+    final validate=await validateLogin(email,password);
+    if(validate==true){
+      await Future.forEach(userlist, (user) {
+        if(user.email==email&&user.password==password){
+          userfound=true;
+        }else{
+          userfound=false;
+        }
+      });
+      if(userfound==true){
+        Get.offAll(()=>Hadmineg(email: email,));
+        Get.snackbar("Success", "Login Success");
+      }
+      else{
+        Get.snackbar("Error", "Incorrect Email/password");
+      }
+    }else{
+      Get.snackbar("error", "Incorrect Email/password");
+    }
+  }
+
+  Future<bool>validateLogin(String email, String password) async{
+    if(email!=""&&password!=""){
+      return true;
+    }else{
+      Get.snackbar("Error", "Fiels cannot be empty!!",backgroundColor: Colors.red);
+      return false;
+    }
+  }
 }
+

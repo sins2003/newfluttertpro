@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newfluttertpro/Hive%20Example/Login%20With%20Hive%20Adapter/Database/Database.dart';
 import 'package:newfluttertpro/Validations/loginpagewithvalidation.dart';
 
 import 'HLogin.dart';
@@ -146,17 +147,27 @@ class _signupvalidateState extends State<Hsignup> {
     final vpass2 = spass2.text.trim();
 
     final emailvalidationresult = EmailValidator.validate(vemail);
-    if (emailvalidationresult == true) {
-      final passwordvalidationresult = checkpassword(vpass, vpass2);
-      if (passwordvalidationresult == true) {
-        final user=User(email:vemail,password:vpass);
-      } else {}
-    } else {}
+    if (vemail != "" && vpass != "") {
+      if (emailvalidationresult == true) {
+        final passwordvalidationresult = checkpassword(vpass, vpass2);
+        if (passwordvalidationresult == true) {
+          final user = User(email: vemail, password: vpass);
+
+          await DBfunction.instance.UserSignup(user);
+          Get.back();
+          Get.snackbar("success", "User Created Successfully");
+        }
+      } else {
+        Get.snackbar("Error", "Provide a valid email");
+      }
+    } else {
+      Get.snackbar("Error", "Fields can not be empty");
+    }
   }
 
   bool checkpassword(String vpass, String vpass2) {
     if (vpass == vpass2) {
-      if (vpass.length > 6) {
+      if (vpass.length < 6) {
         Get.snackbar("Error", "Password must be > 6");
         return false;
       } else {
